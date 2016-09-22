@@ -5,8 +5,10 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="js/jquery.sieve.min.js"></script>
         <script>
 
         function booksLoop(JData){
@@ -48,16 +50,29 @@
                 //$("#books").html(str);
                 document.getElementById('database').innerHTML = str;
            }
-        })
-
+        });
+        $(document).ready( function() {
+            $(".ui-loader").fadeOut(500);
+        });
+        
+        $(document).ready(function() {
+            $("table#database").sieve({
+                searchTemplate:
+                    '<div class="form-group"><input type="text" class="search form-control input-lg" placeholder="找書嗎？"</div>'
+            });
+        });
         </script>
+        <style>
+        </style>
     </head>
     <body>
         <div class="container">
             <h2>臺東大學資訊工程學系圖書館</h2>
             <p>系圖查詢系統</p>
-            <table id="database" class="table table-striped">
-
+            <div class="ui-loader alert alert-success fade in" align="center">
+                <i class="fa fa-refresh fa-spin fa-1x fa-fw"></i> 載入中
+            </div>
+            <table id="database" class="table table-hover">
             </table>
         </div>
     </body>
